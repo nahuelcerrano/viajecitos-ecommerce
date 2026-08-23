@@ -4,23 +4,34 @@ import { FiltersContext } from "../../context/Filters"
 export const useFilters = () => {
   const { filters, setFilters, currentPage } = useContext(FiltersContext)
 
-  const filterDestination = (destinos) => {
 
+  const activeFilters = filters[currentPage] || { continent: 'all', minPrice: 0 };
+
+  const filterDestination = (items) => {
     if (currentPage === 'DestinosPage' || currentPage === 'HotelesPage') {
-      return destinos.filter(destino => {
-        
+      return items.filter(item => {
         return (
-          destino.price >= filters.minPrice &&
+          item.price >= activeFilters.minPrice &&
           (
-            filters.continent === 'all' ||
-            destino.continent === filters.continent
+            activeFilters.continent === 'all' ||
+            item.continent === activeFilters.continent
           )
         )
       })
     } else {
-      return destinos
+      return items
     }
   }
 
-  return { filters, filterDestination, setFilters }
+  const updateFilters = (newValues) => {
+    setFilters(prevState => ({
+      ...prevState,
+      [currentPage]: {
+        ...prevState[currentPage],
+        ...newValues
+      }
+    }))
+  }
+
+  return { activeFilters, filterDestination, updateFilters }
 }

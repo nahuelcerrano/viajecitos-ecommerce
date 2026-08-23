@@ -6,25 +6,17 @@ import { Select, SelectItem } from '@heroui/react'
 
 export const DestinoFilters = () => {
 
-  const { filters, setFilters } = useFilters()
-
+  const { activeFilters, updateFilters } = useFilters()
   const minPriceFilterId = useId()
   const continentFilterId = useId()
 
-  const handleChangeMinPrice = () => {
-    setFilters(prevState => ({
-      ...prevState,
-      minPrice: event.target.value
-    }))
+  const handleChangeMinPrice = (event) => {
+    updateFilters({ minPrice: event.target.value })
   }
 
-  const handleChangeContinent = () => {
-    setFilters(prevState => ({
-      ...prevState,
-      continent: event.target.value
-    }))
+  const handleChangeContinent = (event) => {
+    updateFilters({ continent: event.target.value })
   }
-  console.log(filters)
 
   return (
     <>
@@ -38,22 +30,23 @@ export const DestinoFilters = () => {
             max='900'
             step='50'
             onChange={handleChangeMinPrice}
-            value={filters.minPrice}
+            value={activeFilters.minPrice}
             className={filterStyles.slider}
           />
-          <span>${filters.minPrice}</span>
+          <span>${activeFilters.minPrice}</span>
         </div>
 
         <div>
           <label htmlFor={continentFilterId}>
             <span>Contienente </span>
-            <select id={continentFilterId} onChange={handleChangeContinent}>
+            <select id={continentFilterId} onChange={handleChangeContinent} value={activeFilters.continent}>
               <option value="all">Todos</option>
               <option value="europa">Europa</option>
               <option value="asia">Asía</option>
               <option value="africa">Africa</option>
               <option value="america del sur">América del Sur</option>
               <option value="america del norte">América del Norte</option>
+              <option value="oceanía">Oceanía</option>
             </select>
           </label>
         </div>

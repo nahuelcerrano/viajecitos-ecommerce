@@ -2,20 +2,22 @@ import { createContext, useState } from "react";
 
 export const FiltersContext = createContext()
 
+const initialFilters = { continent: 'all', minPrice: 0 };
+
 export const FiltersProvider = ({ children }) => {
-  
+
   const [currentPage, setCurrentPage] = useState('default');
 
   const [filters, setFilters] = useState({
-    continent: 'all',
-    minPrice: 0
-  })
+    DestinosPage: { ...initialFilters },
+    HotelesPage: { ...initialFilters }
+  });
 
   return (
     <FiltersContext.Provider value={{
       filters,
       setFilters,
-      currentPage, 
+      currentPage,
       setCurrentPage
     }}>
       {children}
