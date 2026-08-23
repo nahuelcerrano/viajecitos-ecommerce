@@ -4,11 +4,10 @@ Viajecitos es una Single Page Application (SPA) que simula un e-commerce integra
 
 Este proyecto fue desarrollado para aplicar y consolidar conceptos avanzados de desarrollo frontend con React, incluyendo el manejo de estado global mediante Context API, validación y gestión de formularios, enrutamiento dinámico y consumo de datos simulados (mocks).
 
-> 🌍 [**Ver demo en vivo**](https://viajecitos-react.vercel.app/home)
+[**Ver demo en vivo**](https://viajecitos-react.vercel.app/home)
 
 <img width="100%" alt="Viajecitos Screenshot" src="https://i.imgur.com/ZVYMqfH.jpeg">
 
----
 
 ## Características Principales
 
@@ -18,7 +17,6 @@ Este proyecto fue desarrollado para aplicar y consolidar conceptos avanzados de 
 *   **Contacto y Registro:** Formularios controlados y validados estrictamente utilizando expresiones regulares.
 *   **UI/UX Moderna:** Interfaz responsiva y fluida con componentes pre-diseñados y animaciones.
 
----
 
 ## Tecnologías Utilizadas
 
@@ -30,7 +28,6 @@ Este proyecto fue desarrollado para aplicar y consolidar conceptos avanzados de 
 *   **[Framer Motion](https://www.framer.com/motion/)** - Librería para la creación de animaciones declarativas.
 *   **[Vite](https://vitejs.dev/)** - Entorno de desarrollo y empaquetador ultrarrápido.
 
----
 
 ## Instalación y Uso Local
 
@@ -56,7 +53,6 @@ yarn install
 yarn dev
 ```
 
----
 
 ## Roadmap (Próximas Mejoras)
 
@@ -64,8 +60,8 @@ yarn dev
 * [x] Conexión a una API REST / Backend real para reemplazar los mocks de datos.
 * [x] Implementación de sistema real de autenticación (Login/Registro).
 
----
 
 ## Contacto
 
 Si te interesa mi trabajo o quieres charlar sobre desarrollo, puedes encontrarme aquí:
+- [LinkedIn](https://www.linkedin.com/in/nahuel-cerrano/) | [GitHub](https://github.com/nahuelcerrano)
