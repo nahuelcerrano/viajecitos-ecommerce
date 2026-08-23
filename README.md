@@ -1,94 +1,71 @@
-# <p style="text-align: center;">Viajecitos 🛫 </p>
+# ✈️ Viajecitos
 
-Viajecitos es un sitio web donde simula es un ecommerce de viajes y turismo real donde se puede realizar, reservas de viajes, alojamiento en hoteles o compras de paquetes de guias de turismo.
+Viajecitos es una Single Page Application (SPA) que simula un e-commerce integral de viajes y turismo. Permite a los usuarios explorar destinos internacionales, simular reservas de alojamiento y adquirir paquetes de guías turísticas. 
 
-En este proyecto me permitió entender más como funciona React, aprendiendo como funciona el context, las props, manejo de datos usando mocks el uso de rutas para poder hacer esta simple SPA.
+Este proyecto fue desarrollado para aplicar y consolidar conceptos avanzados de desarrollo frontend con React, incluyendo el manejo de estado global mediante Context API, validación y gestión de formularios, enrutamiento dinámico y consumo de datos simulados (mocks).
 
+> 🌍 [**Ver demo en vivo**](https://viajecitos-react.vercel.app/home)
 
-> [**Ver demo**](https://viajecitos-react.vercel.app/home)
+<img width="100%" alt="Viajecitos Screenshot" src="https://i.imgur.com/ZVYMqfH.jpeg">
 
-<img width="100%" alt="screenshot" src="https://i.imgur.com/ZVYMqfH.jpeg">
+---
 
-## Dependencias 📦
+## Características Principales
 
-- `react-router-dom` - Una librería que nos permite especificar rutas en nuestra aplicación web usando componentes de React.
-- `react-hook-form` - Librería de gestión de formularios para React que facilita el proceso de creación y validación de formularios.
-- `vite` - Herramienta de compilación rápida y ágil para proyectos web modernos.
-- `react-icons` - Paquete de iconos que utiliza ES6 imports para React.
-- `tailwind CSS` - Potente framework css que ayuda a construir y diseñar páginas web.
-- `framer-motion`- Libreria de código abierto con gran cantidad de animaciones.
+*   **Exploración de Destinos:** Catálogo dinámico de países y ciudades.
+*   **Filtros de Búsqueda:** Filtrado de destinos y hoteles por continente y rango de precio en tiempo real.
+*   **Carrito de Compras:** Sistema de gestión de compras funcional, permitiendo agregar, sumar, restar y limpiar el carrito utilizando Context API.
+*   **Contacto y Registro:** Formularios controlados y validados estrictamente utilizando expresiones regulares.
+*   **UI/UX Moderna:** Interfaz responsiva y fluida con componentes pre-diseñados y animaciones.
 
-## Instalación 💻
+---
 
-1. Clonar el repostorio desde git
->```bash
->git clone 'https://github.com/nahuelcerrano/viajecitos-react.git'
->```
+## Tecnologías Utilizadas
 
-2. Accedemos a la carpeta raíz del projecto
+*   **[React](https://reactjs.org/)** - Biblioteca principal para la construcción de interfaces de usuario.
+*   **[React Router DOM](https://reactrouter.com/)** - Gestión de rutas de la SPA.
+*   **[React Hook Form](https://react-hook-form.com/)** - Gestión y validación eficiente de formularios.
+*   **[HeroUI](https://www.heroui.com/)** *(anteriormente NextUI)* - Librería de componentes accesibles y personalizables.
+*   **[Tailwind CSS](https://tailwindcss.com/)** - Framework de CSS de utilidad (Utility-first) para un estilado ágil.
+*   **[Framer Motion](https://www.framer.com/motion/)** - Librería para la creación de animaciones declarativas.
+*   **[Vite](https://vitejs.dev/)** - Entorno de desarrollo y empaquetador ultrarrápido.
 
->```bash
->cd 'viajecitos-react'/
->```
+---
 
-3. Instalamos las dependencias
+## Instalación y Uso Local
 
->```bash
->yarn i 
->```
+Sigue estos pasos para correr el proyecto en tu entorno local:
 
-4. Iniciamos la aplicación
+1. Clonar el repositorio:
+```bash
+git clone [https://github.com/nahuelcerrano/viajecitos-react.git](https://github.com/nahuelcerrano/viajecitos-react.git)
+```
 
->```bash
->yarn dev
->```
+2. Acceder al directorio del proyecto:
+```bash
+cd viajecitos-react
+```
 
-## Estructura del sitio 🌐
+3. Instalar las dependencias (se recomienda Yarn):
+```bash
+yarn install
+```
 
-El sitio web consta de 7 páginas que son:
+4. Iniciar el servidor de desarrollo:
+```bash
+yarn dev
+```
 
-1. Inicio 
-2. Viajes
-2. Nosotros
-3. Servicios
-4. Contacto
-5. Carrito
-6. Destinos
-7. Hoteles
+---
 
-###  Inicio
+## Roadmap (Próximas Mejoras)
 
-Dentro de inicio se muestra ofertas paquetes de viajes y parte resumida de que seria la empresa Viajecitos.
+* [x] Integración de hoteles al flujo del carrito de compras.
+* [x] Conexión a una API REST / Backend real para reemplazar los mocks de datos.
+* [x] Implementación de sistema real de autenticación (Login/Registro).
 
-### Viajes
+---
 
-Consta de tres secciones, la primera 6 destinos con sus precios y un boton donde lleva a la página destinos donde muestra el resto de destinos disponibles dos filtros para precios y por continente.
+## Contacto
 
-Un anuncio de descuento sobre destinos especiales por una temporada
-
-Y por ultimo una seccion con hoteles, es practicamente lo mismo que destinos.
-
-### Nosotros
-
-Esta página solo explicaria quienes serian Viajecitos cuales son sus servicios que ofrece y su historia.
-
-### Servicios
-
-Acá se muestra los paquetes de guías de turismo, algunas ofertas y cuales son los métodos de pago y bancos que aceptarían.
-
-### Carrito
-
-Cuando se da click comprar de algunos de los destinos se mostrará acá, se podrá agregar como tambien quitar acá mismo.
-Hay dos botones, unos para seguir comprando y otro para terminar la compra, pero por el momento solo funciona para limpiar el carrito.
-
-### Contacto
-
-Un formulario, en teoria funcionaria para poder enviar comentario de feedback a la companía pero debito que pide tanto nombre como contraseña, seria mas logico que funcionara para registarse, en un futuro cambiaré la lógica del formulario para que funciona como registro.
-
-
-## Bugs 🐛
-
-1. Los hoteles no se agregan al carrito
-
-## Contacto 👨‍💻
-- [💼 LinkedIn](https://www.linkedin.com/in/nahuel-cerrano/) | [🚀 GitHub](https://github.com/nahuelcerrano)
+Si te interesa mi trabajo o quieres charlar sobre desarrollo, puedes encontrarme aquí:
