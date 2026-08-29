@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Viajecitos.API/Viajecitos.API.csproj" Id="b584b166-acb1-4180-bfce-64c9091db01c" />
+  <Project Path="Viajecitos.Core/Viajecitos.Core.csproj" Id="46d4b29d-e8f2-4ec7-b4d3-a03b53f12ca5" />
+  <Project Path="Viajecitos.Data/Viajecitos.Data.csproj" Id="b9b92e38-44bf-4cb9-ac0f-13d546acd911" />
+</Solution>
