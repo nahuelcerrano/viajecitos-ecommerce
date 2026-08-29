@@ -1,0 +1,242 @@
+[
+  {
+    "ImageId": "mirador_del_lago",
+    "Url": "hoteles",
+    "Country": "Argentina",
+    "Continent": "america del sur",
+    "Name": "Mirador del Lago Hotel",
+    "Alt": "santa cruz",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 600
+  },
+  {
+    "ImageId": "ramses_hilton",
+    "Url": "hoteles",
+    "Country": "Egipto",
+    "Continent": "africa",
+    "Alt": "elcairo",
+    "Name": "Ramses Hilton",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 900
+  },
+  {
+    "ImageId": "catalonia_ramblas",
+    "Url": "hoteles",
+    "Country": "España",
+    "Continent": "europa",
+    "Alt": "barcelona",
+    "Name": "Catalonia Ramblas",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 700
+  },
+  {
+    "ImageId": "jumeirah_emirates_towers",
+    "Url": "hoteles",
+    "Country": "Emiratos Arabes UnImageIdos",
+    "Continent": "asia",
+    "Alt": "dubai",
+    "Name": "Jumeirah Emirates Towers",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 200
+  },
+  {
+    "ImageId": "maldron_hotel",
+    "Url": "hoteles",
+    "Country": "Irlanda",
+    "Continent": "europa",
+    "Alt": "dublin",
+    "Name": "Maldron Hotel",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 600
+  },
+  {
+    "ImageId": "hotel_niwa",
+    "Url": "hoteles",
+    "Country": "Japón",
+    "Continent": "asia",
+    "Alt": "tokio",
+    "Name": "Hotel Niwa",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 600
+  },
+  {
+    "ImageId": "citizenm",
+    "Url": "hoteles",
+    "Country": "Estados UnImageIdos",
+    "Continent": "america del norte",
+    "Alt": "nueva york",
+    "Name": "Citizenm",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 500
+  },
+  {
+    "ImageId": "hotel_national",
+    "Url": "hoteles",
+    "Country": "Rusia",
+    "Continent": "europa",
+    "Alt": "moscu",
+    "Name": "Hotel National",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 400
+  },
+  {
+    "ImageId": "ohana_rapa_nui",
+    "Url": "hoteles",
+    "Country": "Chile",
+    "Continent": "oceania",
+    "Alt": "islas_pascua",
+    "Name": "Ohana Rapa Nui",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 320
+  },
+  {
+    "ImageId": "tashi_phuntshok_hotel",
+    "Url": "hoteles",
+    "Country": "Bhutan",
+    "Continent": "asia",
+    "Alt": "himalaya",
+    "Name": "Tashi Phuntshok Hotel",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 126
+  },
+  {
+    "ImageId": "libertador_hotel",
+    "Url": "hoteles",
+    "Country": "Argentina",
+    "Continent": "america del sur",
+    "Alt": "buenos_aires",
+    "Name": "Libertador Hotel",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 755
+  },
+  {
+    "ImageId": "arena_copacabana_hotel",
+    "Url": "hoteles",
+    "Country": "Brasil",
+    "Continent": "america del sur",
+    "Alt": "rio_de_janeiro",
+    "Name": "Arena Copacabana Hotel",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 755
+  },
+  {
+    "ImageId": "stay_inn_hotel",
+    "Url": "hoteles",
+    "Country": "Canada",
+    "Continent": "america del norte",
+    "Alt": "toronto",
+    "Name": "Stay Inn Hotel",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 755
+  },
+  {
+    "ImageId": "swissotel_grand_shanghai",
+    "Url": "hoteles",
+    "Country": "China",
+    "Continent": "asia",
+    "Alt": "shangai",
+    "Name": "Swissôtel Grand Shanghai",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 486
+  },
+  {
+    "ImageId": "card_hotel",
+    "Url": "hoteles",
+    "Country": "Francia",
+    "Continent": "europa",
+    "Alt": "paris",
+    "Name": "CARD Hôtel",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 325
+  },
+  {
+    "ImageId": "hotel_am_steinplatz",
+    "Url": "hoteles",
+    "Country": "Alemania",
+    "Continent": "europa",
+    "Alt": "berlin",
+    "Name": "Hotel am Steinplatz",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 266
+  },
+  {
+    "ImageId": "taj_palace",
+    "Url": "hoteles",
+    "Country": "India",
+    "Continent": "asia",
+    "Alt": "nueva_delhi",
+    "Name": "Taj Palace",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 184
+  },
+  {
+    "ImageId": "sonder_piazza_san_pietro",
+    "Url": "hoteles",
+    "Country": "Italia",
+    "Continent": "europa",
+    "Alt": "roma",
+    "Name": "Sonder Piazza San Pietro",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 138
+  },
+  {
+    "ImageId": "oyado_nishishichijo",
+    "Url": "hoteles",
+    "Country": "Japón",
+    "Continent": "asia",
+    "Alt": "kioto",
+    "Name": "Oyado Nishishichijo",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 325
+  },
+  {
+    "ImageId": "darwin_8",
+    "Url": "hoteles",
+    "Country": "México",
+    "Continent": "america del norte",
+    "Alt": "ciudad_de_mexico",
+    "Name": "Darwin 8",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 260
+  },
+  {
+    "ImageId": "union_hotel",
+    "Url": "hoteles",
+    "Country": "Corea del Sur",
+    "Continent": "asia",
+    "Alt": "seul",
+    "Name": "Union Hotel",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 341
+  },
+  {
+    "ImageId": "sabianatura_boutiquemadrid",
+    "Url": "hoteles",
+    "Country": "España",
+    "Continent": "europa",
+    "Alt": "madrImageId",
+    "Name": "SabiaNatura - boutiqueMadrid",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 620
+  },
+  {
+    "ImageId": "nomad_cave",
+    "Url": "hoteles",
+    "Country": "Suecia",
+    "Continent": "europa",
+    "Alt": "estocolmo",
+    "Name": "Nomad Cave",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 182
+  },
+  {
+    "ImageId": "sonder_the_henry",
+    "Url": "hoteles",
+    "Country": "Reino UnImageIdo",
+    "Continent": "europa",
+    "Alt": "londres",
+    "Name": "Sonder The Henry",
+    "Description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    "Price": 622
+  }
+]
