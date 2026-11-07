@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>f3fb112f-b68f-4cff-a98b-56006b5dbac0</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +14,14 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+  </ItemGroup>
+
+  <!-- Datos de seeding: se copian a bin/ para que DbInitializer los encuentre
+       sin importar desde qué carpeta se ejecute la API -->
+  <ItemGroup>
+    <Content Update="destinos.json;hoteles.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

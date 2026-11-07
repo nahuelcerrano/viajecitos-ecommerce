@@ -1,78 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 using Viajecitos.Core.Entities;
 
 namespace Viajecitos.Data.Seeding
 {
     public static class DbInitializer
     {
+        private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
+
         public static async Task InitializeAsync(ApplicationDbContext context)
         {
-            await context.Database.EnsureCreatedAsync();
-            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            // Aplica las migraciones pendientes (crea la base y las tablas si no existen).
+            // Reemplaza a EnsureCreatedAsync(), que ignoraba las migraciones.
+            await context.Database.MigrateAsync();
 
-            if (!context.Destino.Any())
+            await SeedFromJsonAsync(context, context.Destino, "destinos.json");
+            await SeedFromJsonAsync(context, context.Hotel, "hoteles.json");
+        }
+
+        // Carga una tabla desde un JSON solo si la tabla está vacía.
+        // Los JSON se copian a bin/ (ver Viajecitos.API.csproj), por eso se buscan en
+        // AppContext.BaseDirectory y no en la carpeta desde donde se ejecuta la API.
+        private static async Task SeedFromJsonAsync<T>(ApplicationDbContext context, DbSet<T> table, string fileName)
+            where T : class
+        {
+            if (await table.AnyAsync())
             {
-                var jsonDestinoPath = Path.Combine(Directory.GetCurrentDirectory(), "destinos.json");
-                
-                try
-                {
-                    if (!File.Exists(jsonDestinoPath))
-                    {
-                        Console.WriteLine("No se encontró el archivo de destinos.");
-                    }
-                    else
-                    {
-                        var jsonDestino = await File.ReadAllTextAsync(jsonDestinoPath);
-                        var destinos = JsonSerializer.Deserialize<List<Destino>>(jsonDestino, options);
-                        
-                        if (destinos != null && destinos.Any())
-                        {
-                            await context.Destino.AddRangeAsync(destinos);
-                            await context.SaveChangesAsync();
-                            Console.WriteLine("Sembrado de base de datos de destinos exitoso.");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine($"Error al sembrar la base de datos de destino: {ex.Message}");
-                }
+                return;
             }
 
-            if (!context.Hotel.Any())
+            var path = Path.Combine(AppContext.BaseDirectory, fileName);
+
+            if (!File.Exists(path))
             {
-                var jsonHotelPath = Path.Combine(Directory.GetCurrentDirectory(), "hoteles.json");
-
-                try
-                {
-                    if (!File.Exists(jsonHotelPath))
-                    {
-                        Console.WriteLine("No se encontró el archivo de hoteles.");
-                    }
-                    else
-                    {
-                        var jsonHotel = await File.ReadAllTextAsync(jsonHotelPath);
-                        var hoteles = JsonSerializer.Deserialize<List<Hotel>>(jsonHotel, options);
-
-                        if (hoteles != null && hoteles.Any())
-                        {
-                            await context.Hotel.AddRangeAsync(hoteles);
-                            await context.SaveChangesAsync();
-                            Console.WriteLine("Sembrado de base de datos de hoteles exitoso.");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Error.WriteLine($"Error al sembrar la base de datos de hoteles: {ex.Message}");
-                    Console.ResetColor();
-                }
+                Console.WriteLine($"No se encontró el archivo de seeding: {path}");
+                return;
             }
 
+            try
+            {
+                var json = await File.ReadAllTextAsync(path);
+                var items = JsonSerializer.Deserialize<List<T>>(json, JsonOptions);
+
+                if (items is { Count: > 0 })
+                {
+                    await table.AddRangeAsync(items);
+                    await context.SaveChangesAsync();
+                    Console.WriteLine($"Seeding de {fileName} exitoso ({items.Count} registros).");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Error al sembrar {fileName}: {ex.Message}");
+            }
         }
     }
 }

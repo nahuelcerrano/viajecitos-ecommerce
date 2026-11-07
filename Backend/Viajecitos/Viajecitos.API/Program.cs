@@ -13,8 +13,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// La connection string NO está en appsettings.json: se carga desde User Secrets
+// (ver docs/02-como-ejecutar.md). Si falta, cortamos con un mensaje claro.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException(
+        "Falta la connection string 'DefaultConnection'. Configurala con: " +
+        "dotnet user-secrets set \"ConnectionStrings:DefaultConnection\" \"Host=localhost;Port=5432;Database=viajecitos;Username=postgres;Password=<tu_password>\"");
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-   options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+   options.UseNpgsql(connectionString));
 builder.Services.AddScoped<IDestinoRepository, DestinoRepository>();
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 builder.Services.AddScoped<ICarritoRepository, CarritoRepository>();
@@ -42,7 +49,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch(Exception ex)
     {
-        Console.WriteLine($"Ocurrió un eror en el sembado de datos: {ex.Message}");
+        Console.WriteLine($"Ocurrió un error al migrar o sembrar la base de datos: {ex.Message}");
     }
 }
 

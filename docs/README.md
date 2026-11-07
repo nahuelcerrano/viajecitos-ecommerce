@@ -15,7 +15,7 @@ Esta carpeta describe **cómo está hecho el proyecto hoy** (relevado del códig
 
 | Área | Estado |
 |---|---|
-| Base de datos (Docker + migraciones) | ✅ Funciona · ⚠️ volumen mal montado |
+| Base de datos (Docker + migraciones) | ✅ Migraciones automáticas al iniciar la API · credenciales fuera del repo |
 | API de catálogo (Destino, Hotel) | ✅ `GET` listado y por id |
 | Carrito en backend | 🟡 Entidades + repositorio listos, **sin controlador** |
 | Capa de servicios (BLL) | ❌ No existe; los controladores llaman al repositorio |
@@ -30,11 +30,11 @@ Encontrados al leer el código para esta documentación. **No se corrigió nada*
 
 ### Backend / infraestructura
 
-1. **Volumen de Docker mal montado.** `docker-compose.yml` monta `postgres_data:/var/lib/postgresql/postgres_data`; Postgres escribe en `/var/lib/postgresql/data`. Los datos se pierden al recrear el contenedor.
-2. **`EnsureCreatedAsync()` en `DbInitializer`.** No usa migraciones. Si la API arranca antes de `dotnet ef database update`, crea las tablas sin historial y las migraciones posteriores fallan. Conviene reemplazarlo por `context.Database.MigrateAsync()`.
-3. **Contraseña de la base versionada.** `appsettings.json` (que sí se sube a Git) tiene `Password=password123`. Para desarrollo local alcanza, pero lo prolijo es moverla a *User Secrets* o a `appsettings.Development.json` (que ya está en `.gitignore`).
+1. ~~**Volumen de Docker mal montado.** `docker-compose.yml` monta `postgres_data:/var/lib/postgresql/postgres_data`; Postgres escribe en `/var/lib/postgresql/data`. Los datos se pierden al recrear el contenedor.~~ **Resuelto (07/11/2026):** ahora monta en `/var/lib/postgresql/data`.
+2. ~~**`EnsureCreatedAsync()` en `DbInitializer`.** No usa migraciones. Si la API arranca antes de `dotnet ef database update`, crea las tablas sin historial y las migraciones posteriores fallan. Conviene reemplazarlo por `context.Database.MigrateAsync()`.~~ **Resuelto (07/11/2026):** la API aplica las migraciones al arrancar.
+3. ~~**Contraseña de la base versionada.** `appsettings.json` (que sí se sube a Git) tiene `Password=password123`. Para desarrollo local alcanza, pero lo prolijo es moverla a *User Secrets* o a `appsettings.Development.json` (que ya está en `.gitignore`).~~ **Resuelto (07/11/2026):** la API la lee de *User Secrets* y Docker Compose de `.env` (hay un `.env.example` de plantilla). Ojo: `password123` sigue en el historial de Git, por eso conviene usar otra contraseña.
 4. **Sin regla "destino O hotel" en `ItemCarrito`.** Nada impide un ítem con los dos ids o con ninguno. Validarlo en la futura BLL.
-5. **El seeding depende de la carpeta de ejecución** (`Directory.GetCurrentDirectory()`). Usar `AppContext.BaseDirectory` y copiar los JSON al output lo haría independiente.
+5. ~~**El seeding depende de la carpeta de ejecución** (`Directory.GetCurrentDirectory()`). Usar `AppContext.BaseDirectory` y copiar los JSON al output lo haría independiente.~~ **Resuelto (07/11/2026):** se hizo exactamente eso.
 
 ### Frontend
 

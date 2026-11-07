@@ -107,7 +107,8 @@ DestinosPage
 
 ```
 1. AddControllers / AddEndpointsApiExplorer / AddSwaggerGen
-2. AddDbContext<ApplicationDbContext>(UseNpgsql("DefaultConnection"))
+2. Lee "DefaultConnection" (User Secrets) → si falta, excepción con instrucciones
+   AddDbContext<ApplicationDbContext>(UseNpgsql(connectionString))
 3. DI (Scoped):  IDestinoRepository → DestinoRepository
                  IHotelRepository   → HotelRepository
                  ICarritoRepository → CarritoRepository
@@ -115,9 +116,9 @@ DestinosPage
 5. Si Development → UseSwagger + UseSwaggerUI
 6. UseHttpsRedirection → UseAuthorization → MapControllers
 7. Scope temporal → DbInitializer.InitializeAsync(context)
-      EnsureCreatedAsync()
-      si Destino vacío → carga destinos.json
-      si Hotel vacío   → carga hoteles.json
+      MigrateAsync()   (aplica migraciones pendientes)
+      si Destino vacío → carga destinos.json  (desde bin/)
+      si Hotel vacío   → carga hoteles.json   (desde bin/)
 8. Run()
 ```
 

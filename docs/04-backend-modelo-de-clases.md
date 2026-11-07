@@ -69,6 +69,8 @@ Namespaces: `Viajecitos.Core.Entities`, `Viajecitos.Core.Interfaces`, `Viajecito
               │ «static» DbInitializer                         │
               ├────────────────────────────────────────────────┤
               │ + InitializeAsync(ApplicationDbContext) : Task │
+              │ - SeedFromJsonAsync<T>(context, DbSet<T>,      │
+              │                        string fileName) : Task │
               └────────────────────────────────────────────────┘
 ```
 
@@ -165,7 +167,9 @@ Los tres repositorios se registran como **Scoped** (una instancia por request, i
 ### `DbInitializer` (`Viajecitos.Data/Seeding`)
 
 - Método estático `InitializeAsync(context)`, llamado una vez al arrancar la API.
-- Ejecuta `EnsureCreatedAsync()` y, si las tablas `Destino` / `Hotel` están vacías, deserializa `destinos.json` (32 registros) y `hoteles.json` (28 registros) con `PropertyNameCaseInsensitive = true`.
+- Ejecuta `Database.MigrateAsync()` (aplica las migraciones pendientes) y después llama a `SeedFromJsonAsync<T>` para `Destino` y `Hotel`.
+- `SeedFromJsonAsync<T>` (privado, genérico): si la tabla está vacía, lee el JSON desde `AppContext.BaseDirectory` (carpeta `bin/`) y lo deserializa con `PropertyNameCaseInsensitive = true`. `destinos.json` tiene 32 registros y `hoteles.json` 28.
+- Los JSON viven en `Viajecitos.API/` y se copian a `bin/` al compilar (`CopyToOutputDirectory` en `Viajecitos.API.csproj`).
 - Los JSON no traen `Id`: se generan con `Guid.NewGuid()` al deserializar.
 
 ## Endpoints disponibles
