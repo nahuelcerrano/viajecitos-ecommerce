@@ -58,5 +58,15 @@ namespace Viajecitos.Data.Repositories
             _context.ItemCarrito.RemoveRange(items);
             await _context.SaveChangesAsync();
         }
+
+        public async Task UpdateCantidadAsync(Guid itemId, int cantidad)
+        {
+            var item = await _context.ItemCarrito.FindAsync(itemId);
+            if (item != null)
+            {
+                item.Cantidad = cantidad;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

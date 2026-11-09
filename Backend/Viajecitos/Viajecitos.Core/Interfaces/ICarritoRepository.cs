@@ -12,5 +12,6 @@ namespace Viajecitos.Core.Interfaces
         Task<ItemCarrito> AddItemAsync(Guid carritoId, ItemCarrito item);
         Task RemoveItemAsync(Guid itemId);
         Task ClearCarritoAsync(Guid carritoId);
+        Task UpdateCantidadAsync(Guid itemId, int cantidad);
     }
 }
