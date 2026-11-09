@@ -22,6 +22,7 @@ Esta carpeta describe **cómo está hecho el proyecto hoy** (relevado del códig
 | DTOs | 🟡 Solo el carrito (en la BLL); Destino y Hotel exponen la entidad |
 | Front conectado a la API | 🟡 Solo `ViajesSection` y `HotelSection` (páginas `/viajes`, `/viajes/destinos`, `/viajes/hoteles`). El resto sigue con mocks |
 | Carrito en front | ⚠️ En memoria y basado en ids del mock (ver abajo) |
+| Estilos del front | ✅ Solo Tailwind con theme propio en `tailwind.config.js` (09/11/2026, ver [05 § 8](05-frontend-componentes.md#8-estilos-y-theme)) |
 | Checkout / autenticación | ❌ Pendiente |
 
 ## Problemas detectados
@@ -45,7 +46,13 @@ Encontrados al leer el código para esta documentación. **No se corrigió nada*
 10. **Hooks de fetch sin control de error HTTP.** No revisan `response.ok`; un 404/500 termina en error de parseo o en lista vacía sin aviso al usuario.
 11. **Código muerto:** `viajes/pages/index.js` exporta `TripPage` y `OfficePage`, que no existen; `data/verano.js` no se usa; `ViajesSection` y `HotelSection` importan mocks que ya no usan; `useFetchDestinos` importa `use` sin usarlo.
 12. **Prop con nombre inconsistente:** `numCardsToShow` (ViajesSection) vs `numCardstoShow` (HotelSection).
+13. **Detalles visuales pendientes de la migración a Tailwind (09/11/2026).** En la migración se mantuvo a propósito el aspecto anterior; quedan para corregir:
+    - El botón "Contacto" del `Navbar` usa `bg-rose-700` en vez de `bg-primary`.
+    - En `Cart`, la lista tiene `leading-[60px]` (herencia de una regla global vieja de `ul`) y la descripción de cada ítem queda muy espaciada.
+    - Clases que no existen en Tailwind y no hacen nada: `grid-row-1/2/3` (`ServicesBanks`, `ToursCards`), `grid-rows-0` (`ServicesTours`), `h-100` (`Newsletter`).
+    - `#131313` en los botones del carrito: último hex fuera del theme.
+    - Otros pesos: `font-extrabold` (`CartItem`, `ServicesBanks`, `ToursCards`), `font-semibold` (subtítulo del `HeroBanner`) y `<b>` (precio en `CartItem`) siguen más gruesos que el 500 elegido.
 
 ### README principal
 
-13. ~~El *Roadmap* marca como hechos la conexión al backend, la autenticación y los hoteles en el carrito, que todavía están pendientes. También menciona un formulario de **registro** que no existe (solo hay contacto).~~ **Resuelto (07/11/2026):** Roadmap actualizado, se quitó "Registro", se corrigió la ruta de instalación (`cd viajecitos-react/Frontend`) y se agregó el link a esta carpeta.
+14. ~~El *Roadmap* marca como hechos la conexión al backend, la autenticación y los hoteles en el carrito, que todavía están pendientes. También menciona un formulario de **registro** que no existe (solo hay contacto).~~ **Resuelto (07/11/2026):** Roadmap actualizado, se quitó "Registro", se corrigió la ruta de instalación (`cd viajecitos-react/Frontend`) y se agregó el link a esta carpeta.

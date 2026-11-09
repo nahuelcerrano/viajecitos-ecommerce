@@ -1,5 +1,4 @@
 import React from 'react'
-import destinoStyles from './destino.module.css'
 
 export const DestinoCard = ({
   id,
@@ -12,18 +11,14 @@ export const DestinoCard = ({
 
 
   return (
-    <div className={`${destinoStyles.destinations}`}>
-      <div style={{
-        backgroundImage: `url(${destinoImageUrl})`,
-        height: '50%',
-        borderRadius: '50%',
-        transition: 'box-shadow 1s',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover'
-      }}></div>
-      <div className={destinoStyles.content}>
-        <strong>{ country }</strong>
-        <p className={destinoStyles.desc}>{ city }</p>
+    <div className='relative mb-5 h-[250px] w-[130px] cursor-pointer overflow-visible rounded-[5px] border-none bg-transparent text-white'>
+      <div
+        className='h-1/2 rounded-full bg-cover bg-center transition-shadow duration-1000'
+        style={{ backgroundImage: `url(${destinoImageUrl})` }}
+      ></div>
+      <div className='grid grid-cols-1 grid-rows-2 gap-y-[5px] text-black'>
+        <strong className='my-[1em] block text-center font-medium'>{ country }</strong>
+        <p className='text-center text-muted'>{ city }</p>
       </div>
     </div>
   )

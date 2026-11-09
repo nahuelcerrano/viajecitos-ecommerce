@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@heroui/react";
 import { BsFillCartFill } from "react-icons/bs";
 
-import navStyles from "./navbar.module.css";
-
 
 export const Navbar = () => {
 
@@ -30,30 +28,29 @@ export const Navbar = () => {
 
   return (
     <div
-      className={`${navStyles.header}  ${fixed && navStyles.fixed} ${fixed && 'animate__animated animate__slideInDown'} ${!fixed && 'animate__animated animate__fadeIn animate__faster'}`}
+      className={`fixed top-0 z-20 w-full ${fixed ? 'bg-nav-gradient transition-all duration-500 animate-slide-in-down' : 'animate-fade-in'}`}
       ref={navbarOffset}>
       <nav
-      // ${fixed && navStyles.fixed} ${fixed && 'animate__animated animate__slideOutUp'}
-      className={`${navStyles.navbar} row`}
+      className="max-w-site mx-auto flex justify-between py-5 leading-[60px] text-white transition-all duration-200"
       ref={navbar}>
-        <Link className={`${navStyles.logo}`} to="/">
+        <Link className="ml-[0.3rem] cursor-pointer font-logo text-logo font-bold text-shadow" to="/">
           Viajecitos
         </Link>
 
-        <ul className={navStyles.menu}>
-          <li className={navStyles.list}>
+        <ul className="m-0 flex flex-wrap text-base leading-[60px]">
+          <li className="px-2.5 text-shadow">
             <Link to="/viajes">Viajes</Link>
           </li>
 
-          <li className={navStyles.list}>
+          <li className="px-2.5 text-shadow">
             <Link to="/about">Nosotros</Link>
           </li>
 
-          <li className={navStyles.list}>
+          <li className="px-2.5 text-shadow">
             <Link to="/servicios">Servicios</Link>
           </li>
         </ul>
-        <div className={ navStyles.buttons }>
+        <div className="flex items-center justify-center">
           <Button radius="lg" className={ fixed ? 'bg-white text-black' : 'bg-rose-700 text-white' }>
             <Link to="/contacto">
               Contacto

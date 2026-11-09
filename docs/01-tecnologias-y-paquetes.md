@@ -93,9 +93,10 @@ Viajecitos.Core     ──► (nada)
 
 | Recurso | Dónde | Uso |
 |---|---|---|
-| animate.css 4.1.1 | `index.html` | Animaciones del `Navbar` (`animate__slideInDown`, `animate__fadeIn`) |
-| Google Fonts (Birthstone, Italianno, Maven Pro) | `src/index.css` | Tipografías |
+| Google Fonts (Maven Pro 400–900, Italianno, Gabarito 500) | `index.html` (`<link>` con `preconnect`) | Tipografías: texto general, logo y títulos del slider |
+
+> animate.css se sacó el 09/11/2026: las animaciones del `Navbar` ahora son del theme de Tailwind.
 
 ### Estilos
 
-Conviven tres formas de estilar: clases de **Tailwind**, **CSS Modules** (`*.module.css` por componente) y algunos **estilos inline** (imágenes de fondo calculadas). Hay un `cart.css` global para el carrito.
+Desde el 09/11/2026 el frontend usa **solo Tailwind** (se eliminaron los CSS Modules y `cart.css`). Los colores, fuentes, tamaños, sombras, gradientes y animaciones del proyecto están en el theme de `tailwind.config.js`. `src/index.css` solo tiene las directivas de Tailwind, el `body` y la scrollbar. Detalle de los tokens y convenciones en [05 · Estilos y theme](05-frontend-componentes.md#8-estilos-y-theme).

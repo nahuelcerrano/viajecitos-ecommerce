@@ -15,7 +15,7 @@ export const ViajesPage = () => {
       <main>
 
         <section className='text-center flex flex-col w-full pb-7 pt-10'>
-          <h2 className='text-center text-3xl font-bold py-7 mb-2.5'>
+          <h2 className='text-center text-3xl font-medium py-7 mb-2.5'>
             Nuestros viajes para usted
           </h2>
           <p className='text-gray-500 w-1/2 mx-auto'>
@@ -30,7 +30,7 @@ export const ViajesPage = () => {
             variant="shadow"
             radius='medium'
             size='lg'
-            className="bg-gradient-to-tr from-[#25aae1] to-[#30dd8a] text-white shadow-lg"
+            className="bg-gradient-to-tr from-accent-blue to-accent-green text-white shadow-lg shadow-accent-blue/40"
           >
             <Link to='/viajes/destinos'>
               Ver más
@@ -41,7 +41,7 @@ export const ViajesPage = () => {
         <ViajesAdSection />
 
         <section className='text-center flex flex-col w-full pb-7 pt-10'>
-          <h2 className='text-center text-3xl font-bold py-7 mb-2.5'>
+          <h2 className='text-center text-3xl font-medium py-7 mb-2.5'>
             Los mejores hoteles
           </h2>
           <p className='text-gray-500 w-1/2 mx-auto'>
@@ -56,7 +56,7 @@ export const ViajesPage = () => {
             variant="shadow"
             radius='medium'
             size='lg'
-            className="bg-gradient-to-tr from-[#25aae1] to-[#30dd8a] text-white shadow-lg"
+            className="bg-gradient-to-tr from-accent-blue to-accent-green text-white shadow-lg shadow-accent-blue/40"
           >
             <Link to='/viajes/hoteles'>
               Ver más

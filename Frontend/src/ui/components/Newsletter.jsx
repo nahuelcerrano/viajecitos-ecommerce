@@ -1,13 +1,12 @@
 import React from 'react'
-import newsletter from './footer.module.css'
 import { Button } from '@heroui/react'
 import { Input } from '@heroui/react'
 
 export const Newsletter = () => {
   return (
-    <section className={newsletter.newsletter}>
-      <div className={`${newsletter.newsflex} row items-center`}>
-          <h2 className='text-white font-bold'>Newsletter Section</h2>
+    <section className='bg-primary p-8'>
+      <div className='max-w-site mx-auto flex items-center justify-between'>
+          <h2 className='text-white font-medium'>Newsletter Section</h2>
           <div className='flex justify-center'>
             <Input
               color='default'

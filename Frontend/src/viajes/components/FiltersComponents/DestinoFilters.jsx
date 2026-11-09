@@ -1,6 +1,5 @@
 import React, { useId } from 'react'
 
-import filterStyles from './filter.module.css'
 import { useFilters } from '../../hooks/useFilters'
 import { Select, SelectItem } from '@heroui/react'
 
@@ -20,8 +19,8 @@ export const DestinoFilters = () => {
 
   return (
     <>
-      <section className={filterStyles.filters}>
-        <div>
+      <section className='flex items-center justify-evenly pb-4 pt-8 text-sm font-medium'>
+        <div className='flex gap-4'>
           <label htmlFor={minPriceFilterId}>Precio</label>
           <input
             type="range"
@@ -31,12 +30,11 @@ export const DestinoFilters = () => {
             step='50'
             onChange={handleChangeMinPrice}
             value={activeFilters.minPrice}
-            className={filterStyles.slider}
           />
           <span>${activeFilters.minPrice}</span>
         </div>
 
-        <div>
+        <div className='flex gap-4'>
           <label htmlFor={continentFilterId}>
             <span>Contienente </span>
             <select id={continentFilterId} onChange={handleChangeContinent} value={activeFilters.continent}>

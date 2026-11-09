@@ -23,7 +23,7 @@ export const HotelesPage = () => {
 
       <main>
         <section className='text-center flex flex-col w-full pb-7 pt-10'>
-          <h2 className='text-center text-3xl font-bold py-7 mb-2.5'>
+          <h2 className='text-center text-3xl font-medium py-7 mb-2.5'>
             Los mejores hoteles
           </h2>
           <p className='text-gray-500 w-1/2 mx-auto'>

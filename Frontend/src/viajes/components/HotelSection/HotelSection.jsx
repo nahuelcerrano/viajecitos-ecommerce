@@ -3,7 +3,6 @@ import { useFilters } from '../../hooks/useFilters'
 import { useFetchHoteles } from "../../hooks/useFetchHoteles"
 import { hoteles } from '../../../data'
 import { ViajesCard } from '../ViajesSection/ViajesCard'
-import hotel from './hotel.module.css'
 
 export const HotelSection = ({ numCardstoShow }) => {
 
@@ -19,8 +18,8 @@ export const HotelSection = ({ numCardstoShow }) => {
   }
 
   return (
-    <section className={hotel.sectionHotel}>      
-      <div className={hotel.cardsContainer}>
+    <section className='max-w-site mx-auto py-12 font-sans'>      
+      <div className='grid grid-cols-4 gap-4'>
         {
           defaultDisplayedDestinations.map(hotel => (
             <ViajesCard
