@@ -17,7 +17,7 @@ export const CartItem = ({
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext)
 
   return (
-    <li className='row'>
+    <li className='max-w-site mx-auto cursor-pointer px-2.5'>
       <Card
         isBlurred
         className="border-none bg-background/60 dark:bg-default-100/50 mb-10"

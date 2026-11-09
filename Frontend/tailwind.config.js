@@ -55,9 +55,11 @@ export default {
         DEFAULT: "1px 0 3px #000",
         lg: "2px 0 3px #000",
         primary: "1px 2px 3px #dc143c",
+        hero: "1px 2px 3px #000",
       },
       backgroundImage: {
         form: "url('/backgrounds/form_bg.jpg')",
+        "oferta-verano": "linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.03)), url('/ads/paquete_especial.jpg')",
         "nav-gradient": "linear-gradient(61deg, #ffffff 0%, #dc146b 35%, #dc143c 100%)",
         "accent-gradient": "linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673)",
       },

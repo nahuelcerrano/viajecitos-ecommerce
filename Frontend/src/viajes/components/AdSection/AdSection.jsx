@@ -1,13 +1,12 @@
 import React from 'react'
 import { ImageSlider } from './ImageSlider'
 import { ads } from '../../../data'
-import sliderStyles from './ad.module.css'
 
 export const AdSection = () => {
 
   return (
-    <section className={sliderStyles.sectionSlide}>
-      <div className={sliderStyles.containerSlider}>
+    <section className='pb-[60px]'>
+      <div className='mx-auto h-[600px] w-[90%]'>
         <ImageSlider ads={ads}/>
       </div>
     </section>

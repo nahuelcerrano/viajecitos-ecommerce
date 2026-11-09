@@ -4,7 +4,7 @@ import { creditCard, debitCard, banks } from '../../../data'
 
 export const ServicesBanks = () => {
   return (
-    <section className='grid grid-cols-3 row pb-10 gap-x-[30px] gap-y-[50px]'>
+    <section className='grid grid-cols-3 max-w-site mx-auto pb-10 gap-x-[30px] gap-y-[50px]'>
 
       <Card
         radius="sm"
@@ -23,7 +23,7 @@ export const ServicesBanks = () => {
           <ul className='grid grid-cols-4 items-center h-full'>
             {
               creditCard.map( bank =>(
-                <li key={bank.id} className='flex items-center justify-center'>
+                <li key={bank.id} className='flex cursor-pointer items-center justify-center px-2.5'>
                   <Image
                     radius='none'
                     className="max-w-[70px]"
@@ -63,7 +63,7 @@ export const ServicesBanks = () => {
           <ul className='grid grid-cols-2 items-center h-full'>
             {
               debitCard.map( bank =>(
-                <li key={bank.id} className='flex items-center justify-center'>
+                <li key={bank.id} className='flex cursor-pointer items-center justify-center px-2.5'>
                   <Image
                     radius='none'
                     className="max-w-[70px]"
@@ -102,7 +102,7 @@ export const ServicesBanks = () => {
           <ul className='grid grid-cols-3 items-center h-full'>
             {
               banks.map( bank =>(
-                <li key={bank.id} className='flex items-center justify-center'>
+                <li key={bank.id} className='flex cursor-pointer items-center justify-center px-2.5'>
                   <Image
                     radius='none'
                     className="max-w-[70px]"

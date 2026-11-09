@@ -2,12 +2,11 @@ import React from 'react'
 
 import { OfertaCard } from '../OfertaSection/OfertaCard'
 import { ad_verano } from '../../../data'
-import servicesDiscount from './services.module.css'
 
 export const ServicesDiscount = () => {
   return (
-    <section className='row'>
-      <div className={ servicesDiscount.container }>
+    <section className='max-w-site mx-auto'>
+      <div className='flex flex-wrap justify-between'>
         {
           ad_verano.map( card => (
             <OfertaCard

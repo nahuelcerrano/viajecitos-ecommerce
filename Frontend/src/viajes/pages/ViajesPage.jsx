@@ -30,7 +30,7 @@ export const ViajesPage = () => {
             variant="shadow"
             radius='medium'
             size='lg'
-            className="bg-gradient-to-tr from-[#25aae1] to-[#30dd8a] text-white shadow-lg"
+            className="bg-gradient-to-tr from-accent-blue to-accent-green text-white shadow-lg shadow-accent-blue/40"
           >
             <Link to='/viajes/destinos'>
               Ver más
@@ -56,7 +56,7 @@ export const ViajesPage = () => {
             variant="shadow"
             radius='medium'
             size='lg'
-            className="bg-gradient-to-tr from-[#25aae1] to-[#30dd8a] text-white shadow-lg"
+            className="bg-gradient-to-tr from-accent-blue to-accent-green text-white shadow-lg shadow-accent-blue/40"
           >
             <Link to='/viajes/hoteles'>
               Ver más

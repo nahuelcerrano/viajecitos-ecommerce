@@ -37,7 +37,7 @@ export const Navbar = () => {
           Viajecitos
         </Link>
 
-        <ul className="m-0 flex flex-wrap text-base">
+        <ul className="m-0 flex flex-wrap text-base leading-[60px]">
           <li className="px-2.5 text-shadow">
             <Link to="/viajes">Viajes</Link>
           </li>
