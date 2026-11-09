@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Viajecitos.Core\Viajecitos.Core.csproj" />
     <ProjectReference Include="..\Viajecitos.Data\Viajecitos.Data.csproj" />
+    <ProjectReference Include="..\Viajecitos.Services\Viajecitos.Services.csproj" />
   </ItemGroup>
 
 </Project>

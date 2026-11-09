@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Viajecitos.Core.Entities;
-using Viajecitos.Core.Interfaces;
+using Viajecitos.Services.Interfaces;
 
 namespace Viajecitos.API.Controllers
 {
@@ -8,29 +8,23 @@ namespace Viajecitos.API.Controllers
     [Route("api/[controller]")]
     public class DestinoController : ControllerBase
     {
-        private readonly IDestinoRepository _destinoRepository;
+        private readonly IDestinoService _destinoService;
 
-        public DestinoController(IDestinoRepository destinoRepository)
+        public DestinoController(IDestinoService destinoService)
         {
-            _destinoRepository = destinoRepository;
+            _destinoService = destinoService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Destino>>> GetDestinos()
         {
-            var destinos = await _destinoRepository.GetAllAsync();
-            return Ok(destinos);
+            return Ok(await _destinoService.ObtenerTodosAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Destino>> GetDestino(Guid id)
         {
-            var destino = await _destinoRepository.GetByIdAsync(id);
-            if (destino == null)
-            {
-                return NotFound();
-            }
-            return Ok(destino);
+            return Ok(await _destinoService.ObtenerPorIdAsync(id));
         }
     }
 }

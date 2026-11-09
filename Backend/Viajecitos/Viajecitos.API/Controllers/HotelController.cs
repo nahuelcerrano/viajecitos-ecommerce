@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Viajecitos.Core.Entities;
-using Viajecitos.Core.Interfaces;
+using Viajecitos.Services.Interfaces;
 
 namespace Viajecitos.API.Controllers
 {
@@ -8,29 +8,23 @@ namespace Viajecitos.API.Controllers
     [Route("api/[controller]")]
     public class HotelController : ControllerBase
     {
-        private readonly IHotelRepository _hotelRepository;
+        private readonly IHotelService _hotelService;
 
-        public HotelController(IHotelRepository hotelRepository)
+        public HotelController(IHotelService hotelService)
         {
-            _hotelRepository = hotelRepository;
+            _hotelService = hotelService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHoteles()
         {
-            var hoteles = await _hotelRepository.GetAllAsync();
-            return Ok(hoteles);
+            return Ok(await _hotelService.ObtenerTodosAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(Guid id)
         {
-            var hotel = await _hotelRepository.GetByIdAsync(id);
-            if (hotel == null)
-            {
-                return NotFound();
-            }
-            return Ok(hotel);
+            return Ok(await _hotelService.ObtenerPorIdAsync(id));
         }
     }
 }

@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Viajecitos.Data;
-using Viajecitos.Core.Entities;
 using Viajecitos.Core.Interfaces;
 using Viajecitos.Data.Repositories;
 using Viajecitos.Data.Seeding;
+using Viajecitos.API.Handlers;
+using Viajecitos.Services;
+using Viajecitos.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +28,18 @@ builder.Services.AddScoped<IDestinoRepository, DestinoRepository>();
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 builder.Services.AddScoped<ICarritoRepository, CarritoRepository>();
 
+// BLL
+builder.Services.AddScoped<IDestinoService, DestinoService>();
+builder.Services.AddScoped<IHotelService, HotelService>();
+builder.Services.AddScoped<ICarritoService, CarritoService>();
+
+// Excepciones de la BLL -> respuestas HTTP
+builder.Services.AddExceptionHandler<ApiExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
+
+app.UseExceptionHandler();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

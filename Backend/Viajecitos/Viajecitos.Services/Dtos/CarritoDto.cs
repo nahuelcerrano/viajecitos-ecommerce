@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Viajecitos.API.Dtos
+namespace Viajecitos.Services.Dtos
 {
  
     public class AgregarItemDto
