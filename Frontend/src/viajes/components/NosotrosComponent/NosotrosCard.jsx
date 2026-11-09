@@ -15,7 +15,7 @@ export const NosotrosCard = ({
         style={{ backgroundImage: `url(${nosotrosImgUrl})` }}
       ></div>
       <div className='relative flex w-full flex-col justify-center bg-white px-2 text-center text-muted'>
-        <strong className='my-[1em] block text-center font-bold text-black'>{title}</strong>
+        <strong className='my-[1em] block text-center font-medium text-black'>{title}</strong>
         <p>{description}</p>
       </div>
     </div>

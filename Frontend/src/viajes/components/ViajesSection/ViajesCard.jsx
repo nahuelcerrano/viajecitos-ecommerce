@@ -29,7 +29,7 @@ export const ViajesCard = ({
       <div>
         <img className="h-full w-full object-cover" src={destinoImageUrl} alt={validName} />
       </div>
-      <div className="flex flex-col items-center justify-evenly px-2.5 text-center font-bold">
+      <div className="flex flex-col items-center justify-evenly px-2.5 text-center font-medium">
         <h3>{capsName}</h3>
         <p className="text-center font-normal text-muted"> {validDescription}</p>
         <h3>$ {validPrice}</h3>
@@ -44,7 +44,7 @@ export const ViajesCard = ({
       <div className="flex flex-col items-start overflow-hidden">
         <button 
           onClick={() => addToCart(validId)} 
-          className="m-0 h-full w-full rounded-none bg-accent-gradient bg-300% font-sans text-base font-bold text-white shadow-accent transition-all duration-[400ms] ease-in-out hover:bg-right-top"
+          className="m-0 h-full w-full rounded-none bg-accent-gradient bg-300% font-sans text-base font-medium text-white shadow-accent transition-all duration-[400ms] ease-in-out hover:bg-right-top"
         >
           Comprar
         </button>

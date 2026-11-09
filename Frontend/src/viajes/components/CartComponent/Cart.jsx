@@ -19,7 +19,7 @@ export const Cart = () => {
     <>
       <PageHeader page='cart' />
       <section className='flex flex-col items-center justify-center py-16'>
-        <h1 className='text-2xl font-bold mb-5'>Carrito de Compras</h1>
+        <h1 className='text-2xl font-medium mb-5'>Carrito de Compras</h1>
         <ul className='flex flex-col items-center justify-center text-[14px] font-normal leading-[60px]'>
           {
             destinos.map(destino => {
@@ -43,7 +43,7 @@ export const Cart = () => {
               <button className={checkoutButton} onClick={() => clearCart()}>Terminar compra</button>
             </div>
           ) : (
-            <h2 className='text-lg font-bold mb-5'>Tu carrito de compras se encuentra vacio</h2>
+            <h2 className='text-lg font-medium mb-5'>Tu carrito de compras se encuentra vacio</h2>
           )
         }
       </section>

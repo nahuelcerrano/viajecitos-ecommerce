@@ -36,7 +36,7 @@ export const ToursCards = ({
             <p className="text-lg font-extrabold mt-3">Tour de { name } - Tour Privado</p>
 
             <div className='mt-3'>
-              <span className='mr-5 bg-accent-deep p-1.5 border-2 border-solid border-black rounded-lg font-bold'>{ rating }</span>
+              <span className='mr-5 bg-accent-deep p-1.5 border-2 border-solid border-black rounded-lg font-medium'>{ rating }</span>
               <span className='text-lg'>★ ★ ★ ★ ★</span>
             </div>
 

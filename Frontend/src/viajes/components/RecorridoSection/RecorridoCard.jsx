@@ -15,7 +15,7 @@ export const RecorridoCard = ({
         className='h-full bg-cover bg-center'
         style={{ backgroundImage: `url(${recorridoImageUrl})` }}
       ></div>
-      <div className='absolute bottom-[15px] mx-4 font-bold transition-opacity duration-1000 text-shadow-primary'>
+      <div className='absolute bottom-[15px] mx-4 font-medium transition-opacity duration-1000 text-shadow-primary'>
         <p className='m-4'>{`${country} | ${name}`}</p>
         <p className='m-4'>${ price }</p>
       </div>

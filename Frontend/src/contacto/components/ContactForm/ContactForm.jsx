@@ -24,7 +24,7 @@ export const ContactForm = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <CardHeader className="flex gap-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500">
               <div className="flex flex-col px-4 py-10">
-                <p className="text-3xl text-white font-bold py-5">Contáctanos</p>
+                <p className="text-3xl text-white font-medium py-5">Contáctanos</p>
                 <p className="text-small text-white italic">Envíanos tus consultas o feedback y te responderemos a la brevedad.</p>
               </div>
             </CardHeader>
@@ -125,7 +125,7 @@ export const ContactForm = () => {
                 color="success"
                 variant="shadow"
                 radius='md'
-                className='bg-gradient-to-tr from-green-400 to-green-600 text-white shadow-lg px-16 font-bold text-lg'
+                className='bg-gradient-to-tr from-green-400 to-green-600 text-white shadow-lg px-16 font-medium text-lg'
                 isDisabled={!isDirty}
                 type='submit'
               >

@@ -19,7 +19,7 @@ export const DestinoFilters = () => {
 
   return (
     <>
-      <section className='flex items-center justify-evenly pb-4 pt-8 text-sm font-bold'>
+      <section className='flex items-center justify-evenly pb-4 pt-8 text-sm font-medium'>
         <div className='flex gap-4'>
           <label htmlFor={minPriceFilterId}>Precio</label>
           <input

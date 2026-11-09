@@ -17,7 +17,7 @@ export const DestinoCard = ({
         style={{ backgroundImage: `url(${destinoImageUrl})` }}
       ></div>
       <div className='grid grid-cols-1 grid-rows-2 gap-y-[5px] text-black'>
-        <strong className='my-[1em] block text-center font-bold'>{ country }</strong>
+        <strong className='my-[1em] block text-center font-medium'>{ country }</strong>
         <p className='text-center text-muted'>{ city }</p>
       </div>
     </div>

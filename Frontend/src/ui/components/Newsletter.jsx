@@ -6,7 +6,7 @@ export const Newsletter = () => {
   return (
     <section className='bg-primary p-8'>
       <div className='max-w-site mx-auto flex items-center justify-between'>
-          <h2 className='text-white font-bold'>Newsletter Section</h2>
+          <h2 className='text-white font-medium'>Newsletter Section</h2>
           <div className='flex justify-center'>
             <Input
               color='default'
