@@ -1,7 +1,6 @@
 import React from 'react'
 import { SectionImgCard } from './SectionImgCard'
 import { icoImg } from '../../data';
-import imgSection from './footer.module.css'
 
 export const SectionImg = () => {
   
@@ -9,7 +8,7 @@ export const SectionImg = () => {
 
   return (
     <section>
-      <div className={`${imgSection.container} `}>
+      <div className='flex flex-wrap items-center justify-between leading-5'>
         {
           cards.map( card => (
             <SectionImgCard 

@@ -1,5 +1,4 @@
 import React from 'react'
-import imgSection from './footer.module.css'
 
 export const SectionImgCard = ({ id }) => {  
 
@@ -7,13 +6,11 @@ export const SectionImgCard = ({ id }) => {
   
   return (
 
-    <div className={`${imgSection.cardSection}` }>
-      <div style={{
-        backgroundImage: `url(${icoImageUrl})`,
-        height: '100%',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover'
-      }}>
+    <div className='relative h-[195px] w-1/6 overflow-hidden bg-white text-white'>
+      <div
+        className='h-full bg-cover bg-center'
+        style={{ backgroundImage: `url(${icoImageUrl})` }}
+      >
       </div>
     </div>
   )
