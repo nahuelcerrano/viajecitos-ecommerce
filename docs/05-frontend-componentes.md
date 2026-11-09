@@ -6,7 +6,7 @@ Carpeta: `Frontend/src/`
 src/
 ├── main.jsx               Punto de entrada (BrowserRouter + ScrollToTop)
 ├── ViajecitosApp.jsx      Providers globales
-├── index.css              Tailwind + fuentes + estilos globales
+├── index.css              Directivas de Tailwind + body + scrollbar (theme en ../tailwind.config.js)
 ├── router/                AppRouter (rutas de primer nivel)
 ├── context/               Cart.jsx, Filters.jsx
 ├── helpers/               ScrollToTop.jsx
@@ -281,3 +281,46 @@ Imágenes: todas en `Frontend/public/` y se arman como `/{carpeta}/{id}.jpg` (`c
 | price | string (`'400'`) | number (`400`) |
 
 `ViajesCard` ya contempla las dos formas; el resto de los componentes solo entiende la forma del mock.
+
+---
+
+## 8. Estilos y theme
+
+Todo el estilo es con clases de **Tailwind** (+ los componentes de HeroUI). No hay archivos `.css` por componente. Migración hecha el 09/11/2026 (rama `refactor/tailwind-theme`).
+
+### Dónde vive cada cosa
+
+| Archivo | Qué tiene |
+|---|---|
+| `tailwind.config.js` | **Theme del proyecto** (fuente única de colores, fuentes, tamaños, sombras, gradientes, animaciones) + plugin `text-shadow` + theme de HeroUI |
+| `src/index.css` | `@tailwind base/components/utilities`, `body` (`bg-surface font-sans antialiased`), `scroll-smooth` y estilos de la scrollbar |
+| `index.html` | `<link>` a Google Fonts |
+
+### Tokens del theme
+
+| Tipo | Clase(s) | Valor | Dónde se usa |
+|---|---|---|---|
+| Color | `primary` | `#dc143c` | Newsletter, badge "% OFF", puntitos del slider. Definido en el theme de **HeroUI**, así que también aplica a `<Button color="primary">` |
+| Color | `secondary` | `#dc146b` | Theme de HeroUI (parte del gradiente del navbar) |
+| Color | `surface` / `surface-alt` | `#ebebeb` / `#efefef` | Fondo del `body` / bordes de cards |
+| Color | `ink` | `#20222d` | Fondo del footer |
+| Color | `muted` | `#808080` | Textos secundarios (descripciones de cards) |
+| Color | `sky` | `#9fe9ff` | Títulos del slider |
+| Color | `accent-blue` · `accent-mint` · `accent-green` · `accent-emerald` · `accent-deep` | `#25aae1` · `#40e495` · `#30dd8a` · `#2bb673` · `#30a071` | Botones "Comprar" y "Ver más", badge de rating de tours |
+| Fuente | `font-sans` | Maven Pro (400–900) | Todo el sitio (default) |
+| Fuente | `font-logo` | Italianno | Logo "Viajecitos" |
+| Fuente | `font-display` | Gabarito 500 | Textos del slider |
+| Tamaño | `text-hero` · `text-logo` | `3.125rem` · `4rem` | Título del `HeroBanner` · logo |
+| Ancho | `max-w-site` | `1100px` | Contenedor del contenido (`max-w-site mx-auto`) |
+| Sombra | `shadow-card` · `shadow-cart` · `shadow-accent` | — | `ViajesCard` · carrito · botón "Comprar" |
+| Text-shadow | `text-shadow` · `-lg` · `-primary` · `-hero` | — | Navbar, slider, `RecorridoCard`, `HeroBanner` |
+| Fondo | `bg-nav-gradient` · `bg-accent-gradient` · `bg-oferta-verano` · `bg-form` | — | Navbar fijo · botón "Comprar" · sección Paquetes Especiales · formulario de contacto |
+| Animación | `animate-slide-in-down` · `animate-fade-in` | 1s · 0.5s | Navbar al scrollear / arriba de todo |
+
+### Convenciones
+
+- **Colores siempre desde el theme** (`bg-primary`, `text-muted`, `from-accent-blue`…), nunca un hex en el JSX. Si hace falta uno nuevo, se agrega a `tailwind.config.js`.
+- **Pesos de fuente:** `font-medium` (500) para títulos y textos destacados; `font-bold` (700) solo en el logo.
+- **Imágenes dinámicas:** solo la URL va en `style={{ backgroundImage: `url(...)` }}`; tamaño, posición y demás van como clases (`bg-cover bg-center`).
+- **Ojo con `text-sm`, `text-base`, `text-xl`…:** además del tamaño setean `line-height`. Si un elemento necesita conservar un `line-height` propio (por ej. el navbar con `leading-[60px]`), hay que ponerlo explícito.
+- **Valores puntuales** que no están en la escala de Tailwind se escriben con corchetes (`h-[350px]`, `pb-[60px]`) en vez de crear un `.css`.
