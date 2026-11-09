@@ -1,0 +1,30 @@
+@Viajecitos.API_HostAddress = http://localhost:5016
+@api = http://localhost:5016/api
+
+### Crear carrito
+POST {{api}}/Carrito
+
+### Listar destinos (para copiar un id)
+GET {{api}}/Destino
+
+### Agregar destino
+POST {{api}}/Carrito/ID_CARRITO/items
+Content-Type: application/json
+
+{ "destinoId": "ID_DESTINO", "cantidad": 2 }
+
+### Ver carrito
+GET {{api}}/Carrito/ID_CARRITO
+
+### Cambiar cantidad (0 = quitar)
+PUT {{api}}/Carrito/ID_CARRITO/items/ID_ITEM
+Content-Type: application/json
+
+{ "cantidad": 3 }
+
+### Quitar ítem
+DELETE {{api}}/Carrito/ID_CARRITO/items/ID_ITEM
+
+### Vaciar carrito
+DELETE {{api}}/Carrito/ID_CARRITO/items
+###

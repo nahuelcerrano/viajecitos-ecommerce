@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>f3fb112f-b68f-4cff-a98b-56006b5dbac0</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.11">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+  </ItemGroup>
+
+  <!-- Datos de seeding: se copian a bin/ para que DbInitializer los encuentre
+       sin importar desde qué carpeta se ejecute la API -->
+  <ItemGroup>
+    <Content Update="destinos.json;hoteles.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Viajecitos.Core\Viajecitos.Core.csproj" />
+    <ProjectReference Include="..\Viajecitos.Data\Viajecitos.Data.csproj" />
+    <ProjectReference Include="..\Viajecitos.Services\Viajecitos.Services.csproj" />
+  </ItemGroup>
+
+</Project>
