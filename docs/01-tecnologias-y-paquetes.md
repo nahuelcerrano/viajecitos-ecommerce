@@ -33,13 +33,14 @@
 
 ## Backend — paquetes NuGet
 
-Solución: `Backend/Viajecitos/Viajecitos.slnx` (3 proyectos, todos `net10.0`, `Nullable` e `ImplicitUsings` habilitados).
+Solución: `Backend/Viajecitos/Viajecitos.slnx` (4 proyectos, todos `net10.0`, `Nullable` e `ImplicitUsings` habilitados).
 
 | Proyecto | Paquete | Versión | Para qué se usa |
 |---|---|---|---|
 | **Viajecitos.API** | Microsoft.AspNetCore.OpenApi | 10.0.11 | Metadatos OpenAPI |
 | | Swashbuckle.AspNetCore | 10.2.3 | Swagger UI en `/swagger` (solo en Development) |
 | | Microsoft.EntityFrameworkCore.Design | 10.0.11 | Necesario para `dotnet ef` (la API es el *startup project*). `PrivateAssets=all` |
+| **Viajecitos.Services** | — (sin paquetes) | — | BLL: servicios, DTOs, excepciones de negocio |
 | **Viajecitos.Core** | — (sin paquetes) | — | Entidades e interfaces puras |
 | **Viajecitos.Data** | Microsoft.EntityFrameworkCore | 10.0.11 | ORM |
 | | Microsoft.EntityFrameworkCore.Relational | 10.0.11 | Soporte relacional (migraciones, SQL) |
@@ -48,10 +49,12 @@ Solución: `Backend/Viajecitos/Viajecitos.slnx` (3 proyectos, todos `net10.0`, `
 Referencias entre proyectos:
 
 ```
-Viajecitos.API  ──► Viajecitos.Core
-Viajecitos.API  ──► Viajecitos.Data
-Viajecitos.Data ──► Viajecitos.Core
-Viajecitos.Core ──► (nada)
+Viajecitos.API      ──► Viajecitos.Services
+Viajecitos.API      ──► Viajecitos.Data      (solo para la DI en Program.cs)
+Viajecitos.API      ──► Viajecitos.Core
+Viajecitos.Services ──► Viajecitos.Core
+Viajecitos.Data     ──► Viajecitos.Core
+Viajecitos.Core     ──► (nada)
 ```
 
 ---

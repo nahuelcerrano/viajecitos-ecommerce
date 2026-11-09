@@ -76,7 +76,9 @@ La carpeta [`docs/`](docs/README.md) describe cómo está construido el proyecto
 * [x] Backend en .NET 10 (N-Capas) con PostgreSQL en Docker y EF Core.
 * [x] Catálogo de destinos y hoteles servido desde la API.
 * [x] Listados de destinos y hoteles del frontend consumiendo la API.
-* [ ] Capa de servicios (BLL) y DTOs en el backend.
+* [x] Capa de servicios (BLL) con reglas de negocio y DTOs del carrito.
+* [x] API del carrito de compras (crear, agregar, cambiar cantidad, quitar, vaciar).
+* [ ] DTOs para destinos y hoteles.
 * [ ] Carrito de compras conectado a la API (incluye hoteles en el carrito).
 * [ ] Checkout.
 * [ ] Reemplazar los mocks restantes (home, servicios, carrito).
