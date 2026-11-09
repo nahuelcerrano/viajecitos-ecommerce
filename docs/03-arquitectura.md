@@ -27,7 +27,7 @@
 │   ┌────────────────────────────────────────────────────────────────┐ │
 │   │ Viajecitos.API            (Presentación / UI)                  │ │
 │   │   Program.cs (DI, Swagger, seeding)                            │ │
-│   │   DestinoController   HotelController   [CarritoController ✗]  │ │
+│   │   DestinoController   HotelController   CarritoController      │ │
 │   └──────────────────────────────┬─────────────────────────────────┘ │
 │                                  │ hoy llama DIRECTO al repositorio  │
 │   ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─▼─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐ │
@@ -59,7 +59,7 @@
 
 | Capa DAS | Proyecto | Contenido | Estado |
 |---|---|---|---|
-| **UI** | `Viajecitos.API` | Controladores, `Program.cs`, configuración, JSON de seed | ✅ Parcial (falta `CarritoController`) |
+| **UI** | `Viajecitos.API` | Controladores, DTOs del carrito, `Program.cs`, configuración, JSON de seed | ✅ |
 | **BE** | `Viajecitos.Core` | Entidades del dominio e interfaces de repositorio | ✅ |
 | **BLL** | *(no existe)* | Reglas de negocio: total del carrito, descuento por banco, checkout | ❌ Pendiente |
 | **DAL** | `Viajecitos.Data` | `DbContext`, repositorios, migraciones, seeding | ✅ |

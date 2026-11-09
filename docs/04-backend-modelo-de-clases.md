@@ -1,6 +1,6 @@
 # 04 · Backend: clases, propiedades, métodos y relaciones
 
-Namespaces: `Viajecitos.Core.Entities`, `Viajecitos.Core.Interfaces`, `Viajecitos.Data`, `Viajecitos.Data.Repositories`, `Viajecitos.Data.Seeding`, `Viajecitos.API.Controllers`.
+Namespaces: `Viajecitos.API.Dtos`, `Viajecitos.Core.Entities`, `Viajecitos.Core.Interfaces`, `Viajecitos.Data`, `Viajecitos.Data.Repositories`, `Viajecitos.Data.Seeding`, `Viajecitos.API.Controllers`.
 
 ## Diagrama de clases completo
 
@@ -44,8 +44,10 @@ Namespaces: `Viajecitos.Core.Entities`, `Viajecitos.Core.Interfaces`, `Viajecito
  │ + RemoveItemAsync(Guid itemId) : Task    │            ┆
  │ + ClearCarritoAsync(Guid carritoId)      │            ┆
  │     : Task                               │            ┆
+ │ + UpdateCantidadAsync(Guid itemId,       │            ┆
+ │                       int cantidad):Task │            ┆
  └────────────────△─────────────────────────┘            ┆
-                  ┆ implementa       (sin controlador)   ┆
+                  ┆ implementa                           ┆
 ══════════════════╪═══════════════ Viajecitos.Data ══════╪═════════════════════
  ┌────────────────┴────────┐ ┌───────────────────────┐ ┌─┴─────────────────────┐
  │ CarritoRepository       │ │ DestinoRepository     │ │ HotelRepository       │
@@ -73,6 +75,57 @@ Namespaces: `Viajecitos.Core.Entities`, `Viajecitos.Core.Interfaces`, `Viajecito
               │                        string fileName) : Task │
               └────────────────────────────────────────────────┘
 ```
+
+### `CarritoController` (API)
+
+```
+ ┌──────────────────────────────────────────────────────────────┐
+ │ CarritoController : Controller   [Route("api/[controller]")] │
+ ├──────────────────────────────────────────────────────────────┤
+ │ - _carritoRepository : ICarritoRepository                    │
+ │ - _destinoRepository : IDestinoRepository   (para el precio) │
+ │ - _hotelRepository   : IHotelRepository     (para el precio) │
+ ├──────────────────────────────────────────────────────────────┤
+ │ + CrearCarrito()                         : ActionResult<CarritoDto>
+ │ + GetCarrito(Guid id)                    : ActionResult<CarritoDto>
+ │ + AgregarItem(Guid id, AgregarItemDto)   : IActionResult     │
+ │ + ActualizarCantidad(Guid id, Guid itemId,                   │
+ │                      ActualizarCantidadDto) : IActionResult  │
+ │ + QuitarItem(Guid id, Guid itemId)       : IActionResult     │
+ │ + VaciarCarrito(Guid id)                 : IActionResult     │
+ │ - MapCarrito(Carrito) : CarritoDto   «static»                │
+ └──────────────────────────────────────────────────────────────┘
+        usa ──► ICarritoRepository, IDestinoRepository, IHotelRepository
+        usa ──► DTOs de Viajecitos.API/Dtos/CarritoDto.cs
+```
+
+### DTOs (`Viajecitos.API/Dtos/CarritoDto.cs`)
+
+```
+ Entrada (lo que manda el front)            Salida (lo que devuelve la API)
+ ┌───────────────────────────────┐          ┌─────────────────────────────────┐
+ │ AgregarItemDto                │          │ CarritoDto                      │
+ ├───────────────────────────────┤          ├─────────────────────────────────┤
+ │ DestinoId : Guid?             │          │ Id    : Guid                    │
+ │ HotelId   : Guid?             │          │ Items : List<ItemCarritoDto>    │
+ │ Cantidad  : int  [Range 1-99] │          │ Total : decimal  (calculado)    │
+ └───────────────────────────────┘          └───────────────┬─────────────────┘
+ ┌───────────────────────────────┐                          │ 1..*
+ │ ActualizarCantidadDto         │          ┌───────────────▼─────────────────┐
+ ├───────────────────────────────┤          │ ItemCarritoDto                  │
+ │ Cantidad : int  [Range 0-99]  │          ├─────────────────────────────────┤
+ │   (0 = quitar el ítem)        │          │ Id, DestinoId?, HotelId?        │
+ └───────────────────────────────┘          │ Nombre : string                 │
+                                            │ Imagen : string  (/url/id.jpg)  │
+                                            │ Cantidad : int                  │
+                                            │ PrecioUnitario : decimal        │
+                                            │ Subtotal : decimal (calculado)  │
+                                            └─────────────────────────────────┘
+```
+
+Por qué DTOs y no entidades:
+- `Carrito.Items → ItemCarrito.Carrito → Carrito…` es un ciclo, y serializar la entidad directamente falla.
+- El cliente nunca manda el precio: `PrecioUnitario` lo toma el servidor de `Destino.Price` o `Hotel.Price`.
 
 ## Entidades y relaciones
 
@@ -122,7 +175,7 @@ Lectura de las relaciones:
 
 Reglas de diseño que hoy dependen de la lógica (no de la base):
 
-- Un `ItemCarrito` debería tener **exactamente uno** de `DestinoId` / `HotelId`. No hay restricción en la base ni validación en código que lo garantice → corresponde a la futura BLL.
+- Un `ItemCarrito` debe tener **exactamente uno** de `DestinoId` / `HotelId`. Lo valida `CarritoController.AgregarItem` (devuelve 400). No hay restricción en la base. Cuando exista la BLL, la validación pasa ahí.
 - `PrecioUnitario` guarda el precio **al momento de agregar** el ítem (así el carrito no cambia si después cambia `Destino.Price`).
 - `Destino.Discount` + `Destino.Bank` modelan el descuento por banco (ej. 10 % con Visa). Hoy solo se muestran; no se aplican en ningún cálculo.
 - `Url` + `ImageId` arman la ruta de la imagen en el front: `/{Url}/{ImageId}.jpg` (ej. `/countries/country1.jpg`).
@@ -138,9 +191,10 @@ Reglas de diseño que hoy dependen de la lógica (no de la base):
 | | | `GetDestino(Guid id)` | `GET /api/Destino/{id}` | 200 / 404 |
 | `HotelController` | `IHotelRepository` | `GetHoteles()` | `GET /api/Hotel` | 200 + lista |
 | | | `GetHotel(Guid id)` | `GET /api/Hotel/{id}` | 200 / 404 |
+| `CarritoController` | `ICarritoRepository`, `IDestinoRepository`, `IHotelRepository` | ver tabla de endpoints | `/api/Carrito/...` | 201 / 200 / 204 / 400 / 404 |
 
 Las rutas no distinguen mayúsculas: el front llama a `/api/destino` y `/api/hotel`.
-Los controladores devuelven **las entidades directamente** (no hay DTOs todavía). ASP.NET serializa en camelCase (`Name` → `name`).
+`DestinoController` y `HotelController` devuelven **las entidades directamente**; `CarritoController` usa DTOs. ASP.NET serializa en camelCase (`Name` → `name`).
 
 ### Repositorios (`Viajecitos.Data/Repositories`)
 
@@ -155,6 +209,7 @@ Los controladores devuelven **las entidades directamente** (no hay DTOs todavía
 | | `AddItemAsync(carritoId, item)` | Asigna `item.CarritoId`, lo agrega y guarda |
 | | `RemoveItemAsync(itemId)` | Busca el ítem con `FindAsync`; si existe lo borra y guarda |
 | | `ClearCarritoAsync(carritoId)` | Borra todos los ítems del carrito (`RemoveRange`) y guarda |
+| | `UpdateCantidadAsync(itemId, cantidad)` | Busca el ítem con `FindAsync`; si existe cambia `Cantidad` y guarda |
 
 Los tres repositorios se registran como **Scoped** (una instancia por request, igual que el `DbContext`).
 
@@ -180,4 +235,14 @@ Los tres repositorios se registran como **Scoped** (una instancia por request, i
 | GET | `/api/Destino/{id}` | Un destino por Guid | ✅ |
 | GET | `/api/Hotel` | Lista todos los hoteles | ✅ |
 | GET | `/api/Hotel/{id}` | Un hotel por Guid | ✅ |
-| — | `/api/Carrito/...` | Crear carrito, agregar/quitar ítems, vaciar | ❌ Repositorio listo, falta controlador |
+| POST | `/api/Carrito` | Crea un carrito vacío → **201** + `CarritoDto` | ✅ |
+| GET | `/api/Carrito/{id}` | Carrito con ítems, subtotales y total → 200 / 404 | ✅ |
+| POST | `/api/Carrito/{id}/items` | Body `AgregarItemDto`. Si el producto ya está, suma la cantidad → **204** / 400 / 404 | ✅ |
+| PUT | `/api/Carrito/{id}/items/{itemId}` | Body `ActualizarCantidadDto`. `0` quita el ítem → **204** / 400 / 404 | ✅ |
+| DELETE | `/api/Carrito/{id}/items/{itemId}` | Quita un ítem → **204** / 404 | ✅ |
+| DELETE | `/api/Carrito/{id}/items` | Vacía el carrito (el carrito sigue existiendo) → **204** / 404 | ✅ |
+
+Notas del carrito:
+- Las operaciones que modifican devuelven **204 sin cuerpo**: el front modifica y después pide `GET /api/Carrito/{id}`.
+- Antes de quitar o modificar un ítem, el controlador verifica que pertenezca a **ese** carrito (el repositorio no lo valida).
+- Errores de validación de `[Range]` los responde `[ApiController]` automáticamente con 400 (`ProblemDetails`).
